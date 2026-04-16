@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Todo Card</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -18,128 +16,58 @@
     aria-labelledby="todo-title"
   >
 
-    <!-- Accent bar -->
-    <div class="card-accent" aria-hidden="true"></div>
-
-    <!-- Header -->
     <header class="todo-header">
       <div class="title-row">
-        <label class="checkbox-wrap" for="todo-checkbox">
+        <label for="todo-checkbox">
           <input
             type="checkbox"
             id="todo-checkbox"
             data-testid="test-todo-complete-toggle"
             aria-label="Mark task as complete"
           />
-          <span class="checkmark" aria-hidden="true"></span>
         </label>
 
-        <h2
-          data-testid="test-todo-title"
-          id="todo-title"
-          class="todo-title"
-        >
+        <h2 data-testid="test-todo-title" id="todo-title">
           Complete Frontend Task
         </h2>
       </div>
 
       <div class="badges">
-        <span
-          data-testid="test-todo-priority"
-          class="badge priority high"
-          aria-label="Priority: High"
-        >
-          ● High
+        <span data-testid="test-todo-priority" class="badge priority high">
+          High
         </span>
-        <span
-          data-testid="test-todo-status"
-          class="badge status"
-          id="status-text"
-          aria-label="Status: Pending"
-        >
+        <span data-testid="test-todo-status" class="badge status" id="status-text">
           Pending
         </span>
       </div>
     </header>
 
-    <!-- Description -->
-    <p data-testid="test-todo-description" class="todo-description">
-      Build a fully accessible and testable Todo card component for Stage 0,
-      meeting all semantic, ARIA, and responsiveness requirements.
+    <p data-testid="test-todo-description">
+      Build a fully accessible and testable Todo card component for Stage 0.
     </p>
 
-    <!-- Dates -->
     <div class="time-section">
-      <div class="time-item">
-        <span class="time-label">Deadline</span>
-        <time
-          data-testid="test-todo-due-date"
-          datetime="2026-04-20T18:00:00Z"
-          class="due-date"
-        >
-          Due Apr 20, 2026
-        </time>
-      </div>
+      <time data-testid="test-todo-due-date" datetime="2026-04-20T18:00:00Z">
+        Due Apr 20, 2026
+      </time>
 
-      <div class="time-item">
-        <span class="time-label">Remaining</span>
-        <time
-          data-testid="test-todo-time-remaining"
-          id="time-remaining"
-          class="time-remaining"
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          Calculating…
-        </time>
-      </div>
+      <time data-testid="test-todo-time-remaining" id="time-remaining">
+        Calculating...
+      </time>
     </div>
 
-    <!-- Tags -->
-    <ul
-      data-testid="test-todo-tags"
-      class="tags"
-      role="list"
-      aria-label="Task tags"
-    >
-      <li>
-        <span class="tag" data-testid="test-todo-tag-work">work</span>
-      </li>
-      <li>
-        <span class="tag" data-testid="test-todo-tag-urgent">urgent</span>
-      </li>
-      <li>
-        <span class="tag">design</span>
-      </li>
+    <ul data-testid="test-todo-tags" class="tags">
+      <li data-testid="test-todo-tag-work">work</li>
+      <li data-testid="test-todo-tag-urgent">urgent</li>
+      <li>design</li>
     </ul>
 
-    <!-- Footer actions -->
     <footer class="todo-footer">
-      <button
-        data-testid="test-todo-edit-button"
-        class="btn btn-edit"
-        aria-label="Edit task"
-        type="button"
-      >
-        <svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-        </svg>
+      <button data-testid="test-todo-edit-button" class="btn">
         Edit
       </button>
 
-      <button
-        data-testid="test-todo-delete-button"
-        class="btn btn-delete"
-        aria-label="Delete task"
-        type="button"
-      >
-        <svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="3 6 5 6 21 6"/>
-          <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
-          <path d="M10 11v6M14 11v6"/>
-          <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
-        </svg>
+      <button data-testid="test-todo-delete-button" class="btn delete">
         Delete
       </button>
     </footer>
@@ -147,6 +75,7 @@
   </article>
 </main>
 
-<script src="script.js"></script>
+<!-- FIXED: defer added -->
+<script src="script.js" defer></script>
 </body>
 </html>
