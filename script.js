@@ -12,32 +12,24 @@ const deleteBtn    = document.querySelector("[data-testid='test-todo-delete-butt
 
 // ── Time remaining ────────────────────────────────────────────────
 function humaniseDiff(ms) {
-  const abs      = Math.abs(ms);
-  const mins     = Math.floor(abs / 60_000);
-  const hours    = Math.floor(abs / 3_600_000);
-  const days     = Math.floor(abs / 86_400_000);
-  const isPast   = ms < 0;
+  const abs = Math.abs(ms);
+  const mins = Math.floor(abs / 60000);
+  const hours = Math.floor(abs / 3600000);
+  const days = Math.floor(abs / 86400000);
+  const isPast = ms < 0;
 
   let label;
 
-  if (abs < 60_000) {
+  if (abs < 60000) {
     label = "Due now!";
-  } else if (abs < 3_600_000) {
-    // under 1 hour
-    label = isPast
-      ? `Overdue by ${mins} min${mins !== 1 ? "s" : ""}`
-      : `Due in ${mins} min${mins !== 1 ? "s" : ""}`;
-  } else if (abs < 86_400_000) {
-    // under 24 hours
-    label = isPast
-      ? `Overdue by ${hours} hr${hours !== 1 ? "s" : ""}`
-      : `Due in ${hours} hr${hours !== 1 ? "s" : ""}`;
+  } else if (abs < 3600000) {
+    label = isPast ? `Overdue by ${mins} min` : `Due in ${mins} min`;
+  } else if (abs < 86400000) {
+    label = isPast ? `Overdue by ${hours} hr` : `Due in ${hours} hr`;
   } else if (days === 1) {
     label = isPast ? "Overdue by 1 day" : "Due tomorrow";
   } else {
-    label = isPast
-      ? `Overdue by ${days} days`
-      : `Due in ${days} days`;
+    label = isPast ? `Overdue by ${days} days` : `Due in ${days} days`;
   }
 
   return { label, isPast };
@@ -49,32 +41,33 @@ function updateTimeRemaining() {
 
   timeEl.textContent = label;
   timeEl.classList.toggle("overdue", isPast);
-  timeEl.setAttribute("aria-label", label);
 }
 
-// Run immediately, then every 30 seconds
 updateTimeRemaining();
-setInterval(updateTimeRemaining, 30_000);
+setInterval(updateTimeRemaining, 30000);
 
 // ── Checkbox toggle ───────────────────────────────────────────────
-checkbox.addEventListener("change", () => {
-  const done = checkbox.checked;
+if (checkbox) {
+  checkbox.addEventListener("change", () => {
+    const done = checkbox.checked;
 
-  card.classList.toggle("completed", done);
+    card.classList.toggle("completed", done);
 
-  const newStatus = done ? "Done" : "Pending";
-  statusEl.textContent = newStatus;
-  statusEl.setAttribute("aria-label", `Status: ${newStatus}`);
-  titleEl.setAttribute("aria-label",
-    done ? `${titleEl.textContent.trim()} — completed` : titleEl.textContent.trim()
-  );
-});
+    const newStatus = done ? "Done" : "Pending";
+    statusEl.textContent = newStatus;
+  });
+}
 
-// ── Edit / Delete ─────────────────────────────────────────────────
-editBtn.addEventListener("click", () => {
-  console.log("edit clicked");
-});
+// ── Buttons FIXED ─────────────────────────────────────────────────
+if (editBtn) {
+  editBtn.addEventListener("click", () => {
+    console.log("Edit clicked");
+    alert("Edit action triggered");
+  });
+}
 
-deleteBtn.addEventListener("click", () => {
-  alert("Delete clicked — task would be removed.");
-});
+if (deleteBtn) {
+  deleteBtn.addEventListener("click", () => {
+    alert("Delete clicked — task would be removed.");
+  });
+}
